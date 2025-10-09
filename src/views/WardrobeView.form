@@ -17,7 +17,7 @@
         </constraints>
         <properties/>
         <border type="empty">
-          <size top="10" left="10" bottom="10" right="10"/>
+          <size top="10" left="20" bottom="10" right="20"/>
         </border>
         <children>
           <component id="be3f8" class="javax.swing.JButton" binding="backButton">
