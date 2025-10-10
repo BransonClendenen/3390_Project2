@@ -25,7 +25,7 @@ public class MainMenuView extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    //action listeners
+    //Action listeners
     void setWardrobeButtonListener(ActionListener listener){
         wardrobeButton.addActionListener(listener);
     }

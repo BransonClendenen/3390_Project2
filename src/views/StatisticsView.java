@@ -1,6 +1,7 @@
 package views;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class StatisticsView {
     private JPanel mainPanel;
@@ -21,4 +22,22 @@ public class StatisticsView {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
+    //Month action listeners
+    public void setBackButtonListener(ActionListener listener){
+        backButton.addActionListener(listener);
+    }
+    public void setMonthButtonListener(ActionListener listener){
+        thisMonthButton.addActionListener(listener);
+    }
+    public void setThreeMonthButtonListener(ActionListener listener){
+        threeMonthButton.addActionListener(listener);
+    }
+    public void setAllTimeButtonButtonListener(ActionListener listener){
+        allTimeButton.addActionListener(listener);
+    }
+
+
+
+
 }

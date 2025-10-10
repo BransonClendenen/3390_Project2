@@ -1,6 +1,7 @@
 package views;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class OutfitGeneratorView {
     private JPanel mainPanel;
@@ -17,5 +18,16 @@ public class OutfitGeneratorView {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    //Action Listeners
+    public void setBackButtonListener(ActionListener listener) {
+        backButton.addActionListener(listener);
+    }
+    public void setGenerateButtonListener(ActionListener listener) {
+        generateButton.addActionListener(listener);
+    }
+    public void setFinalizeButtonListener(ActionListener listener) {
+        finalizeButton.addActionListener(listener);
     }
 }
