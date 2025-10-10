@@ -26,9 +26,6 @@ public class PlannerView {
     public void setBackButtonListener(ActionListener listener) {
         backButton.addActionListener(listener);
     }
-    public void setDateFieldListener(ActionListener listener) {
-        dateField.addActionListener(listener);
-    }
     public void setShirtButtonListener(ActionListener listener) {
         shirtButton.addActionListener(listener);
     }
@@ -43,5 +40,10 @@ public class PlannerView {
     }
     public void setDeleteButtonListener(ActionListener listener) {
         deleteButton.addActionListener(listener);
+    }
+
+    //Get Date Field
+    public String getDateField() {
+        return dateField.getText();
     }
 }
