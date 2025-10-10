@@ -9,7 +9,7 @@ public class GarmentData {
     private final String filename;
 
     public GarmentData(){
-        filename = "./student.data";
+        filename = "./garments.data";
         garments = new ArrayList<>();
     }
 
