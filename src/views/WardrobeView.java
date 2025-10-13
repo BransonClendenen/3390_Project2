@@ -15,7 +15,7 @@ public class WardrobeView extends JFrame {
     private JPanel leftColumn;
     private JPanel rightColumn;
     private JPanel centerColumn;
-    private JButton shirtButton;
+    private JButton shirtsButton;
     private JButton pantsButton;
     private JButton shoesButton;
     private JButton addButton;
@@ -23,6 +23,49 @@ public class WardrobeView extends JFrame {
     private JButton deleteButton;
     private JButton laundryButton;
 
+    public JPanel getMainPanel() {
+        return mainPanel;
+
+    }
+
+    public JList<String> getItemList() {
+        return itemList;
+    }
+
+    public JButton getShirtsButton() {
+        return shirtsButton;
+    }
+
+    public JButton getPantsButton() {
+        return pantsButton;
+    }
+
+    public JButton getShoesButton() {
+        return shoesButton;
+    }
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public JButton getEditButton() {
+        return editButton;
+    }
+
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public JButton getLaundryButton() {
+        return laundryButton;
+    }
+
+    public JTextField getInputField() {
+        return addItemField;
+    }
+
+
+/*
     public WardrobeView() {
         this.add(mainPanel);
         this.setSize(400, 400);
@@ -69,5 +112,5 @@ public class WardrobeView extends JFrame {
     }
     public void setBackButtonListener(ActionListener listener){
         backButton.addActionListener(listener);
-    }
+    }*/
 }

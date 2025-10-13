@@ -13,6 +13,19 @@ public class LaundryView {
     private JPanel bottomPanel;
     private JButton checkOffButton;
 
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+
+    public JList<String> getLaundryList() {
+        return laundryList;
+    }
+    public JButton getCheckOffButton() {
+        return checkOffButton;
+    }
+
+    /*
     //Action Listeners
     public void setBackButtonListener(ActionListener listener) {
         backButton.addActionListener(listener);
@@ -20,4 +33,6 @@ public class LaundryView {
     public void setCheckOffButtonListener(ActionListener listener) {
         checkOffButton.addActionListener(listener);
     }
+
+*/
 }

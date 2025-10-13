@@ -16,10 +16,14 @@ public class OutfitGeneratorView {
     private JPanel contentWrapper;
     private JPanel backWrapper;
 
+    public JPanel getMainPanel(){
+        return mainPanel;
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
-
+/*
     //Action Listeners
     public void setBackButtonListener(ActionListener listener) {
         backButton.addActionListener(listener);
@@ -29,5 +33,5 @@ public class OutfitGeneratorView {
     }
     public void setFinalizeButtonListener(ActionListener listener) {
         finalizeButton.addActionListener(listener);
-    }
+    }   */
 }

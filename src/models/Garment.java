@@ -17,7 +17,16 @@ public class Garment {
         this.type=type;
         this.style=style;
     }
+
+    @Override
+    public String toString() {
+        return name;
+
+
+    /*
     public String toString(){
         return String.format("%s %s (%d)", name, color, garmentID);
+
+     */
     }
 }

@@ -21,7 +21,11 @@ public class PlannerView {
     private JButton deleteButton;
     private JPanel mainPanel;
 
+    public JPanel getMainPanel(){
+        return mainPanel;
+    }
 
+/*
     //Action Listeners
     public void setBackButtonListener(ActionListener listener) {
         backButton.addActionListener(listener);
@@ -45,5 +49,5 @@ public class PlannerView {
     //Get Date Field
     public String getDateField() {
         return dateField.getText();
-    }
+    }*/
 }

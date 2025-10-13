@@ -13,8 +13,33 @@ public class MainMenuView extends JFrame{
     private JTextArea warningArea;
     private JPanel wrapperPanel;
 
+    public JPanel getMainPanel() {
+
+        return mainPanel;
+    }
+    public JButton getWardrobeButton() {
+        return wardrobeButton;
+    }
+    public JButton getLaundryButton() {
+        return laundryButton;
+    }
+    public JButton getPlannerButton() {
+        return plannerButton;
+    }
+    public JButton getStatisticsButton() {
+        return statisticsButton;
+    }
+    public JButton getOutfitGeneratorButton()
+    {
+        return outfitGeneratorButton;
+
+    }
+
+    /*
+    }
     private void createUIComponents() {
         // TODO: place custom component creation code here
+
     }
 
     //constructors
@@ -40,5 +65,5 @@ public class MainMenuView extends JFrame{
     }
     void setOutfitGeneratorButtonListener(ActionListener listener){
         outfitGeneratorButton.addActionListener(listener);
-    }
+    }*/
 }
