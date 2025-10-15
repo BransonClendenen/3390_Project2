@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.MainMenuView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="462" height="384"/>
     </constraints>
     <properties>
       <alignmentX value="0.5"/>
@@ -16,7 +16,7 @@
     <children>
       <component id="ae590" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -55,7 +55,7 @@
           <gridbag top="20" left="20" bottom="20" right="20" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
-        <border type="none" title-position="2">
+        <border type="empty" title-position="2">
           <size top="20" left="20" bottom="20" right="20"/>
         </border>
         <children>

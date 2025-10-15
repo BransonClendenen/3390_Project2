@@ -1,13 +1,13 @@
 package views;
 
 
-import controllers.LaundryController;
-import controllers.StatisticsController;
-import controllers.WardrobeController;
+import controllers.*;
 import models.AppDataManager;
-import controllers.MainMenuController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MainWindow extends JFrame{
 
@@ -25,8 +25,9 @@ public class MainWindow extends JFrame{
     private final StatisticsView statisticsView = new StatisticsView();
     private final OutfitGeneratorView outfitGeneratorView = new OutfitGeneratorView();
 
-    private final StatisticsController statisticsController;
-    private final MainMenuController mainMenuController;
+
+    private StatisticsController statisticsController;
+    private MainMenuController mainMenuController;
 
     public MainWindow() {
         setTitle("Wardrobe Manager");
@@ -36,18 +37,57 @@ public class MainWindow extends JFrame{
 
         addViews();
 
-               // Controllers
-        statisticsController = new StatisticsController(statisticsView, appDataManager);
-        mainMenuController = new MainMenuController(mainMenuView, this);
 
 
-        LaundryController laundryController = new LaundryController(laundryView, appDataManager);
-        WardrobeController wardrobeController = new WardrobeController(wardrobeView, appDataManager, laundryController);
-        laundryController.setWardrobeController(wardrobeController); // Link laundry back to wardrobe
+        //Controllers
+        //create Laundry (Wardrobe depends on it)
+        LaundryController laundryController =
+                new LaundryController(laundryView, appDataManager, this);
+
+        // Wardrobe needs Laundry + MainWindow
+        WardrobeController wardrobeController =
+                new WardrobeController(wardrobeView, appDataManager, laundryController, this);
+
+        // Link Laundry back to Wardrobe
+        laundryController.setWardrobeController(wardrobeController);
+
+        // Assign to the *fields* (no redeclare)
+        this.statisticsController =
+                new StatisticsController(statisticsView, appDataManager, this);
+
+        this.mainMenuController =
+                new MainMenuController(mainMenuView, this, wardrobeController);
+
+        PlannerController plannerController =
+                new PlannerController(plannerView, appDataManager, this);
 
 
-        StatisticsController statisticsController = new StatisticsController(statisticsView, appDataManager);
-        MainMenuController mainMenuController = new MainMenuController(mainMenuView, this);
+        OutfitGeneratorController outfitController =
+                new OutfitGeneratorController(outfitGeneratorView, appDataManager, this);
+
+
+          //load data on start of the app
+        try {
+            appDataManager.getGarmentData().loadData();
+            appDataManager.getEventData().loadData();
+        } catch (Exception ignored) {}
+
+
+
+
+        //save data when windows closes
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    appDataManager.getGarmentData().saveData();
+                    appDataManager.getEventData().saveData();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
 
         add(mainPanel);
         setVisible(true);
@@ -61,8 +101,6 @@ public class MainWindow extends JFrame{
         mainPanel.add(statisticsView.getMainPanel(), "statistics");
         mainPanel.add(outfitGeneratorView.getMainPanel(), "outfitGenerator");
     }
-
-
 
 
              // screen switching
@@ -80,6 +118,9 @@ public class MainWindow extends JFrame{
     }
 
 }
+
+
+
 
 /*
 first construct all views.

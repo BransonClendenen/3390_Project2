@@ -14,16 +14,25 @@ public class LaundryView {
     private JButton checkOffButton;
 
     public JPanel getMainPanel() {
+
         return mainPanel;
     }
 
 
     public JList<String> getLaundryList() {
+
         return laundryList;
     }
+
     public JButton getCheckOffButton() {
+
         return checkOffButton;
     }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
 
     /*
     //Action Listeners

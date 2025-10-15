@@ -25,20 +25,27 @@ public class StatisticsView {
 
                  // Controller accessors
     public JRadioButton getThisMonthButton() {
+
         return thisMonthRadioButton;
     }
 
     public JRadioButton getThreeMonthButton() {
+
         return threeMonthButton;
     }
 
     public JRadioButton getAllTimeButton() {
+
         return allTimeRadioButton;
     }
 
     public JTable getStatsTable() {
         return statsTable;
     }
+    public JButton getBackButton() {
+        return backButton;
+    }
+
 
 
 

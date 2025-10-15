@@ -64,6 +64,9 @@ public class WardrobeView extends JFrame {
         return addItemField;
     }
 
+    public JButton getBackButton() {
+        return backButton;
+    }
 
 /*
     public WardrobeView() {

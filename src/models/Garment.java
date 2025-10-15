@@ -1,6 +1,11 @@
 package models;
 
-public class Garment {
+import java.io.Serializable;
+
+public class Garment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private final String name;
     private final String color;
     private final int garmentID;
@@ -10,6 +15,8 @@ public class Garment {
     //that way the stats are connected to the garment itself and makes it less of a hassle to try to
     //connect the two seperate models in the controller
 
+
+
     public Garment(String name, String color, int garmentID, String type, String style){
         this.name=name;
         this.color=color;
@@ -18,15 +25,19 @@ public class Garment {
         this.style=style;
     }
 
+    public String getName() { return name; }
+    public String getType() { return type; }
+
+
     @Override
     public String toString() {
         return name;
 
+    }
+}
 
     /*
     public String toString(){
         return String.format("%s %s (%d)", name, color, garmentID);
 
      */
-    }
-}

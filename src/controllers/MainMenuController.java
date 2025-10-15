@@ -6,19 +6,26 @@ import views.MainWindow;
 
 public class MainMenuController {
 
+
     private final MainMenuView view;
     private final MainWindow mainWindow;
+    private final WardrobeController wardrobeController;
 
-    public MainMenuController(MainMenuView view, MainWindow mainWindow) {
+    public MainMenuController(MainMenuView view, MainWindow mainWindow, WardrobeController wardrobeController) {
         this.view = view;
         this.mainWindow = mainWindow;
+        this.wardrobeController = wardrobeController;
 
         setupListeners();
     }
 
     private void setupListeners() {
-        view.getWardrobeButton().addActionListener(e ->
-                mainWindow.showPanel("wardrobe"));
+
+        view.getWardrobeButton().addActionListener(e -> {
+            wardrobeController.reloadWardrobe();
+            mainWindow.showPanel("wardrobe");
+        });
+
 
         view.getLaundryButton().addActionListener(e ->
                 mainWindow.showPanel("laundry"));

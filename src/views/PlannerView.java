@@ -1,29 +1,78 @@
 package views;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
 public class PlannerView {
     private JButton backButton;
     private JLabel headerLabel;
-    private JTextField dateField;
     private JPanel topPanel;
     private JPanel middlePanel;
     private JTable plannerTable;
     private JPanel rightPanel;
     private JList wardrobeList;
     private JPanel categoryPanel;
-    private JButton shirtButton;
+    private JButton shirtsButton;
     private JButton pantsButton;
     private JButton shoesButton;
     private JPanel bottomPanel;
     private JButton addButton;
     private JButton deleteButton;
     private JPanel mainPanel;
+    private JSpinner dateSelector;
+    private JPanel headerDatePanel;
 
     public JPanel getMainPanel(){
+
         return mainPanel;
     }
+
+
+    public JTable getPlannerTable() {
+        return plannerTable;
+    }
+    public JButton getAddButton() {
+        return addButton;
+    }
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public JList<String> getWardrobeList() {
+        return wardrobeList;
+    }
+
+        public JSpinner getDateSelector() {
+        return dateSelector;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
+
+    public String getSelectedItem() {
+        return getWardrobeList().getSelectedValue();
+    }
+
+    public String getSelectedDate() {
+        Object value = getDateSelector().getValue();
+        return (value != null) ? value.toString() : "";
+    }
+
+
+    private void createUIComponents() {
+        dateSelector = new JSpinner(new SpinnerDateModel());
+
+        JSpinner.DateEditor editor = new JSpinner.DateEditor(dateSelector, " yyyy - MM -dd ");
+        dateSelector.setEditor(editor);
+        dateSelector.setPreferredSize(new Dimension(100, 25));
+    }
+
+
+    //public String getSelectedDate() {
+      //  return dateSelector.getValue().toString();
+    //}
 
 /*
     //Action Listeners

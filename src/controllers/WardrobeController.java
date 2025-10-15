@@ -3,8 +3,9 @@ package controllers;
 import models.AppDataManager;
 import models.Garment;
 import views.WardrobeView;
-
+import views.MainWindow;
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class WardrobeController {
@@ -18,24 +19,108 @@ public class WardrobeController {
 
     private final LaundryController laundryController;
 
-    public WardrobeController(WardrobeView view, AppDataManager dataManager, LaundryController laundryController) {
+    private final MainWindow mainWindow;
+
+    public WardrobeController(WardrobeView view, AppDataManager dataManager,
+                              LaundryController laundryController, MainWindow mainWindow) {
         this.view = view;
         this.dataManager = dataManager;
         this.laundryController = laundryController;
+        this.mainWindow = mainWindow;
 
         setupUI();
         setupListeners();
     }
 
-        //helper
+    //helper
     public void reloadWardrobe() {
+        currentCategory = "Shirt";
         loadCategoryItems();
     }
 
+    private void styleActionButton(JButton button, Color baseColor) {
+        button.setFont(new Font("SansSerif", Font.BOLD, 13));
+        button.setBackground(baseColor);
+        button.setForeground(Color.DARK_GRAY);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createLineBorder(new Color(160, 160, 160)));
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                button.setBackground(baseColor.brighter());
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                button.setBackground(baseColor);
+            }
+        });
+
+/*
+
+    // Optional hover effect (subtle color change)
+        button.addMouseListener(new java.awt.event.MouseAdapter()
+
+    {
+        @Override
+        public void mouseEntered (java.awt.event.MouseEvent e){
+        button.setBackground(new Color(200, 220, 255));
+    }
+
+        @Override
+        public void mouseExited (java.awt.event.MouseEvent e){
+        button.setBackground(new Color(220, 235, 250));
+    }
+    });
+*/
+}
+    private void styleCategoryButton(JButton button) {
+        button.setFont(new Font("SansSerif", Font.BOLD, 13));
+        button.setBackground(new Color(230, 230, 250)); // light lavender
+        button.setFocusPainted(false);
+    }
+
+
     //initial setup
     private void setupUI() {
-        view.getItemList().setModel(listModel);
+        JList<String> list = view.getItemList();
+        list.setModel(listModel);
+
+        //styling
+        list.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        list.setFixedCellHeight(26);                 // consistent spacing
+        list.setSelectionBackground(new Color(200, 220, 255));  // light blue highlight
+        list.setSelectionForeground(Color.BLACK);
+        list.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180))); // subtle outline
+        list.setBackground(Color.WHITE);
+        list.setForeground(Color.DARK_GRAY);
+        list.setVisibleRowCount(-1); // let scrollpane decide height
+
+        //Center the text in each cell
+        DefaultListCellRenderer renderer = (DefaultListCellRenderer) list.getCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Apply colorful button styling
+        styleActionButton(view.getAddButton(), new Color(235, 235, 255));    // light green
+        styleActionButton(view.getEditButton(), new Color(235, 235, 255));   // light yellow
+        styleActionButton(view.getDeleteButton(), new Color(235, 235, 255)); // light red
+        styleActionButton(view.getLaundryButton(), new Color(111, 199, 217)); // light blue
+
+        // Optional: same style for category buttons
+        styleActionButton(view.getShirtsButton(), new Color(200, 250, 200));
+        styleActionButton(view.getPantsButton(), new Color(255, 250, 200));
+        styleActionButton(view.getShoesButton(), new Color(255, 210, 210));
+
+      /*  styleCategoryButton(view.getShirtsButton());
+        styleCategoryButton(view.getPantsButton());
+        styleCategoryButton(view.getShoesButton());
+*/
         loadCategoryItems();
+
+
     }
 
     private void loadCategoryItems() {
@@ -43,9 +128,8 @@ public class WardrobeController {
 
         List<Garment> garments = dataManager.getGarmentData().getGarments();
         for (Garment g : garments) {
-            if (g != null) {
-            //if (g != null && g.toString().toLowerCase().contains(currentCategory.toLowerCase())) {
-                listModel.addElement(g.toString());
+            if (g != null && g.getType().equalsIgnoreCase(currentCategory)) {
+                listModel.addElement(g.getName());
             }
         }
     }
@@ -68,6 +152,9 @@ public class WardrobeController {
             currentCategory = "Shoe";
             loadCategoryItems();
         });
+
+        view.getBackButton().addActionListener(e -> mainWindow.showPanel("mainMenu"));
+
 
         // Add new item
         view.getAddButton().addActionListener(e -> addNewItem());

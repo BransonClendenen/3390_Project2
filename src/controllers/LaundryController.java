@@ -1,6 +1,6 @@
 package controllers;
 
-
+import views.MainWindow;
 import models.AppDataManager;
 import models.Garment;
 import views.LaundryView;
@@ -15,16 +15,17 @@ public class LaundryController {
     private final LaundryView view;
     private final AppDataManager dataManager;
     private final DefaultListModel<String> laundryListModel = new DefaultListModel<>();
+    private final MainWindow mainWindow;
 
     private WardrobeController wardrobeController;
-
 
     //temporary list for laundry items in memory
     private final List<Garment> laundryItems = new ArrayList<>();
 
-    public LaundryController(LaundryView view, AppDataManager dataManager) {
+    public LaundryController(LaundryView view, AppDataManager dataManager, MainWindow mainWindow) {
         this.view = view;
         this.dataManager = dataManager;
+        this.mainWindow = mainWindow;
 
         setupUI();
         setupListeners();
@@ -55,6 +56,7 @@ public class LaundryController {
 
     private void setupListeners() {
         view.getCheckOffButton().addActionListener(e -> checkOffSelectedItem());
+        view.getBackButton().addActionListener(e -> mainWindow.showPanel("mainMenu"));
     }
 
     //ACTIONS

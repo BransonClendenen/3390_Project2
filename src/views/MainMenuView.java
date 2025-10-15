@@ -35,11 +35,14 @@ public class MainMenuView extends JFrame{
 
     }
 
+
+
+
     /*
     }
     private void createUIComponents() {
-        // TODO: place custom component creation code here
-
+        // todo: place custom component creation code here
+//
     }
 
     //constructors

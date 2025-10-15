@@ -5,15 +5,19 @@ import views.StatisticsView;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import views.MainWindow;
 
 public class StatisticsController {
 
     private final StatisticsView view;
     private final AppDataManager dataManager;
+    private final MainWindow mainWindow;
 
-    public StatisticsController(StatisticsView view, AppDataManager dataManager) {
+
+    public StatisticsController(StatisticsView view, AppDataManager dataManager, MainWindow mainWindow) {
         this.view = view;
         this.dataManager = dataManager;
+        this.mainWindow = mainWindow;
 
         setupListeners();
         updateTableForThisMonth();   // show something on start
@@ -25,6 +29,7 @@ public class StatisticsController {
         view.getThreeMonthButton().addActionListener(e -> updateTableForThreeMonths());
 
         view.getAllTimeButton().addActionListener(e -> updateTableForAllTime());
+        view.getBackButton().addActionListener(e -> mainWindow.showPanel("mainMenu"));
 
     }
 
