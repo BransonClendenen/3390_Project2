@@ -2,6 +2,9 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class PlannerView {
     private JButton backButton;
@@ -10,7 +13,10 @@ public class PlannerView {
     private JPanel middlePanel;
     private JTable plannerTable;
     private JPanel rightPanel;
-    private JList wardrobeList;
+
+    private JList<String> wardrobeList;    //removes the “unchecked cast” warning when
+                                           // controller calls getWardrobeList().
+
     private JPanel categoryPanel;
     private JButton shirtsButton;
     private JButton pantsButton;
@@ -22,10 +28,6 @@ public class PlannerView {
     private JSpinner dateSelector;
     private JPanel headerDatePanel;
 
-    public JPanel getMainPanel(){
-
-        return mainPanel;
-    }
 
 
     public JTable getPlannerTable() {
@@ -38,37 +40,58 @@ public class PlannerView {
         return deleteButton;
     }
 
+    public JButton getBackButton() {
+        return backButton;
+    }
+
+    public JPanel getMainPanel(){
+        return mainPanel;
+    }
+
+
+
     public JList<String> getWardrobeList() {
         return wardrobeList;
     }
+
+    public JButton getShirtsButton() { return shirtsButton; }
+    public JButton getPantsButton() { return pantsButton; }
+    public JButton getShoesButton() { return shoesButton; }
 
         public JSpinner getDateSelector() {
         return dateSelector;
     }
 
-    public JButton getBackButton() {
-        return backButton;
-    }
 
 
     public String getSelectedItem() {
         return getWardrobeList().getSelectedValue();
     }
 
+
     public String getSelectedDate() {
         Object value = getDateSelector().getValue();
-        return (value != null) ? value.toString() : "";
+        if (value instanceof java.util.Date) {
+            SimpleDateFormat fmt = new SimpleDateFormat("MM-dd-yyyy");
+            return fmt.format((java.util.Date) value);
+        }
+        return "";
     }
 
 
     private void createUIComponents() {
-        dateSelector = new JSpinner(new SpinnerDateModel());
+        dateSelector = new JSpinner(
+                new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH)
+        );
 
-        JSpinner.DateEditor editor = new JSpinner.DateEditor(dateSelector, " yyyy - MM -dd ");
+        JSpinner.DateEditor editor =
+                new JSpinner.DateEditor(dateSelector, "MM-dd-yyyy");
         dateSelector.setEditor(editor);
-        dateSelector.setPreferredSize(new Dimension(100, 25));
+        dateSelector.setPreferredSize(new Dimension(120, 25));
     }
 
+
+}
 
     //public String getSelectedDate() {
       //  return dateSelector.getValue().toString();
@@ -99,4 +122,4 @@ public class PlannerView {
     public String getDateField() {
         return dateField.getText();
     }*/
-}
+

@@ -6,21 +6,15 @@ import models.Garment;
 import views.LaundryView;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LaundryController {
-
 
     private final LaundryView view;
     private final AppDataManager dataManager;
     private final DefaultListModel<String> laundryListModel = new DefaultListModel<>();
     private final MainWindow mainWindow;
-
     private WardrobeController wardrobeController;
-
-    //temporary list for laundry items in memory
-    private final List<Garment> laundryItems = new ArrayList<>();
 
     public LaundryController(LaundryView view, AppDataManager dataManager, MainWindow mainWindow) {
         this.view = view;
@@ -35,8 +29,7 @@ public class LaundryController {
         this.wardrobeController = wardrobeController;
     }
 
-
-    //SETUP
+    //setup
 
     private void setupUI() {
         view.getLaundryList().setModel(laundryListModel);
@@ -45,21 +38,30 @@ public class LaundryController {
 
     private void loadLaundryItems() {
         laundryListModel.clear();
+        List<Garment> items = dataManager.getLaundryData().getLaundryItems();
 
-        //if you later have a real laundry list in GarmentData, pull from there
-        for (Garment g : laundryItems) {
-            laundryListModel.addElement(g.toString());
+        for (Garment g : items) {
+            laundryListModel.addElement(g.getName());
         }
     }
 
-    //LISTENERS
+               // Listeners
 
     private void setupListeners() {
         view.getCheckOffButton().addActionListener(e -> checkOffSelectedItem());
         view.getBackButton().addActionListener(e -> mainWindow.showPanel("mainMenu"));
     }
 
-    //ACTIONS
+     //actions
+
+
+    private void saveLaundry() {
+        try {
+            dataManager.getLaundryData().saveData();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     private void checkOffSelectedItem() {
         String selected = view.getLaundryList().getSelectedValue();
@@ -68,36 +70,36 @@ public class LaundryController {
             return;
         }
 
-        // Find the matching garment in laundryItems
         Garment garmentToReturn = null;
-        for (Garment g : laundryItems) {
-            if (g.toString().equals(selected)) {
+        for (Garment g : dataManager.getLaundryData().getLaundryItems()) {
+            if (g.getName().equals(selected)) {
                 garmentToReturn = g;
                 break;
             }
         }
 
         if (garmentToReturn != null) {
-            laundryItems.remove(garmentToReturn);
-            dataManager.getGarmentData().addGarment(garmentToReturn); // return to wardrobe
+            // Remove from laundry
+            dataManager.getLaundryData().removeGarment(garmentToReturn);
+            // Add back to wardrobe
+            dataManager.getGarmentData().addGarment(garmentToReturn);
 
-                        //Send garment back to wardrobe controller so its list refreshes
+            // Refresh both lists
             if (wardrobeController != null) {
                 wardrobeController.reloadWardrobe();
             }
-
+            saveLaundry();
             loadLaundryItems();
             JOptionPane.showMessageDialog(view.getMainPanel(),
-                    garmentToReturn + " returned to Wardrobe!");
+                    garmentToReturn.getName() + " returned to Wardrobe!");
         }
     }
 
-    //API for other controllers
-
-    /** Called from WardrobeController when user sends something to Laundry */
-
+            // API for other controllers
     public void addToLaundry(Garment garment) {
-        laundryItems.add(garment);
+        dataManager.getLaundryData().addGarment(garment);
+        saveLaundry();
         loadLaundryItems();
     }
 }
+

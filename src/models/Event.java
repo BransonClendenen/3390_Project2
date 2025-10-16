@@ -14,19 +14,41 @@ public class Event implements Serializable {
     private final String eventShoes;
 
     public Event(String name, String date, int eventID,
-                 String eventShirts, String eventPants, String eventShoes) {
+                 String eventShirt, String eventPants, String eventShoes) {
         this.name = name;
         this.date = date;
         this.eventID = eventID;
-        this.eventShirt = eventShirts;
+        this.eventShirt = eventShirt;
         this.eventPants = eventPants;
         this.eventShoes = eventShoes;
-
     }
 
     @Override
     public String toString() {
         return String.format("%s %s (%d)", name, date, eventID);
     }
-}
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public int getEventID() {
+        return eventID;
+    }
+
+    public String getEventShirt() {
+        return eventShirt;
+    }
+
+    public String getEventPants() {
+        return eventPants;
+    }
+
+    public String getEventShoes() {
+        return eventShoes;
+    }
+}

@@ -21,8 +21,13 @@ public class WardrobeController {
 
     private final MainWindow mainWindow;
 
+
+
     public WardrobeController(WardrobeView view, AppDataManager dataManager,
                               LaundryController laundryController, MainWindow mainWindow) {
+
+
+
         this.view = view;
         this.dataManager = dataManager;
         this.laundryController = laundryController;
@@ -118,9 +123,10 @@ public class WardrobeController {
         styleCategoryButton(view.getPantsButton());
         styleCategoryButton(view.getShoesButton());
 */
+
+        dataManager.getGarmentData().getGarments().removeIf(g -> g == null);
+
         loadCategoryItems();
-
-
     }
 
     private void loadCategoryItems() {
@@ -171,6 +177,14 @@ public class WardrobeController {
 
     //action methods
 
+    private void saveGarments() {
+        try {
+            dataManager.getGarmentData().saveData();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
     private void addNewItem() {
         String name = view.getInputField().getText().trim();
@@ -181,6 +195,7 @@ public class WardrobeController {
 
         Garment garment = new Garment(name, "Unknown", listModel.size() + 1, currentCategory, "Casual");
         dataManager.getGarmentData().addGarment(garment);
+        saveGarments();
 
         loadCategoryItems();
         view.getInputField().setText("");
@@ -214,9 +229,12 @@ public class WardrobeController {
             return;
         }
 
-        dataManager.getGarmentData().getGarments().removeIf(g -> g.toString().equals(selected));
+        dataManager.getGarmentData().getGarments()
+                .removeIf(g -> g != null && g.getName().equals(selected));
+        saveGarments();
         loadCategoryItems();
     }
+
 
     private void moveToLaundry() {
         String selected = view.getItemList().getSelectedValue();
@@ -224,21 +242,28 @@ public class WardrobeController {
             JOptionPane.showMessageDialog(view.getMainPanel(), "Please select an item to move to Laundry.");
             return;
         }
+
         Garment movedGarment = null;
         for (Garment g : dataManager.getGarmentData().getGarments()) {
-            if (g.toString().equals(selected)) {
+            if (g != null && g.getName().equals(selected)) {
                 movedGarment = g;
                 break;
             }
         }
+
         if (movedGarment != null) {
             dataManager.getGarmentData().removeGarment(movedGarment);
-            laundryController.addToLaundry(movedGarment); //send garment to Laundry
+            laundryController.addToLaundry(movedGarment); // send garment to Laundry
             listModel.removeElement(selected);
+            saveGarments();
             JOptionPane.showMessageDialog(view.getMainPanel(),
-                    movedGarment + " moved to Laundry!");
+                    movedGarment.getName() + " moved to Laundry!");
+        } else {
+            JOptionPane.showMessageDialog(view.getMainPanel(),
+                    "Could not find the selected garment. Please refresh the list.");
         }
     }
+
 
 
     //  dataManager.getGarmentData().getGarments().removeIf(g -> g.toString().equals(selected));

@@ -2,16 +2,20 @@ package models;
 
 public class AppDataManager {
 
-      // The two existing model managers
+      //The two existing model managers
     private final GarmentData garmentData;
     private final EventData eventData;
+
+   //related to LaundryData manager
+   private final LaundryData laundryData = new LaundryData();
+
 
     public AppDataManager() {
         garmentData = new GarmentData();
         eventData = new EventData();
     }
 
-            // Accessors
+                 // accessors/getters
     public GarmentData getGarmentData() {
         return garmentData;
     }
@@ -20,7 +24,13 @@ public class AppDataManager {
         return eventData;
     }
 
-        // Optional helper methods if you want to centralize saving/loading
+    public LaundryData getLaundryData() {
+        return laundryData;  //LaundryData save
+    }
+
+
+
+    //optional helper methods if you want to centralize saving/loading
     public void saveAll() {
         try {
             garmentData.saveData();

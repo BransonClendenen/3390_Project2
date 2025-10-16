@@ -1,6 +1,5 @@
 package views;
 
-
 import controllers.*;
 import models.AppDataManager;
 
@@ -9,15 +8,15 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class MainWindow extends JFrame{
+public class MainWindow extends JFrame {
 
     private final JPanel mainPanel = new JPanel(new CardLayout());
     private final CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 
-    //Shared data manager (contains GarmentData + EventData)
+    // Shared data manager (contains GarmentData + EventData)
     private final AppDataManager appDataManager = new AppDataManager();
 
-    //Views (six forms)
+    // Views (six forms)
     private final MainMenuView mainMenuView = new MainMenuView();
     private final WardrobeView wardrobeView = new WardrobeView();
     private final LaundryView laundryView = new LaundryView();
@@ -25,7 +24,7 @@ public class MainWindow extends JFrame{
     private final StatisticsView statisticsView = new StatisticsView();
     private final OutfitGeneratorView outfitGeneratorView = new OutfitGeneratorView();
 
-
+    // Controllers
     private StatisticsController statisticsController;
     private MainMenuController mainMenuController;
 
@@ -37,57 +36,47 @@ public class MainWindow extends JFrame{
 
         addViews();
 
+        //load data on start
+        try {
+            appDataManager.getGarmentData().loadData();
+            appDataManager.getEventData().loadData();
+            appDataManager.getLaundryData().loadData();
+        } catch (Exception ignored) {}
 
-
-        //Controllers
-        //create Laundry (Wardrobe depends on it)
+          // Create controllers
         LaundryController laundryController =
                 new LaundryController(laundryView, appDataManager, this);
 
-        // Wardrobe needs Laundry + MainWindow
         WardrobeController wardrobeController =
                 new WardrobeController(wardrobeView, appDataManager, laundryController, this);
 
-        // Link Laundry back to Wardrobe
         laundryController.setWardrobeController(wardrobeController);
-
-        // Assign to the *fields* (no redeclare)
-        this.statisticsController =
-                new StatisticsController(statisticsView, appDataManager, this);
-
-        this.mainMenuController =
-                new MainMenuController(mainMenuView, this, wardrobeController);
 
         PlannerController plannerController =
                 new PlannerController(plannerView, appDataManager, this);
 
+        this.statisticsController =
+                new StatisticsController(statisticsView, appDataManager, this);
+
+        this.mainMenuController =
+                new MainMenuController(mainMenuView, this, wardrobeController, plannerController);
 
         OutfitGeneratorController outfitController =
                 new OutfitGeneratorController(outfitGeneratorView, appDataManager, this);
 
-
-          //load data on start of the app
-        try {
-            appDataManager.getGarmentData().loadData();
-            appDataManager.getEventData().loadData();
-        } catch (Exception ignored) {}
-
-
-
-
-        //save data when windows closes
+            //Save data when window closes
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
                     appDataManager.getGarmentData().saveData();
                     appDataManager.getEventData().saveData();
+                    appDataManager.getLaundryData().saveData();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
-
 
         add(mainPanel);
         setVisible(true);
@@ -102,13 +91,12 @@ public class MainWindow extends JFrame{
         mainPanel.add(outfitGeneratorView.getMainPanel(), "outfitGenerator");
     }
 
-
-             // screen switching
+    //screen switching
     public void showPanel(String name) {
         cardLayout.show(mainPanel, name);
     }
 
-       //Gives other classes access to data
+    // Give other classes access to data
     public AppDataManager getAppDataManager() {
         return appDataManager;
     }
@@ -116,18 +104,4 @@ public class MainWindow extends JFrame{
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainWindow::new);
     }
-
 }
-
-
-
-
-/*
-first construct all views.
-Then you create the controller.
-make the window visible.
-
- */
-
-
-
