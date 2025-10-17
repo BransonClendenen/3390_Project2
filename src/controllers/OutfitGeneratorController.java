@@ -24,7 +24,7 @@ public class OutfitGeneratorController {
 
     private final Random random = new Random();
 
-
+    private final StatisticsController statisticsController;
 
 
     private void setupUI() {
@@ -73,10 +73,14 @@ public class OutfitGeneratorController {
     }
 
 
-    public OutfitGeneratorController(OutfitGeneratorView view, AppDataManager dataManager, MainWindow mainWindow) {
+    public OutfitGeneratorController(OutfitGeneratorView view,
+                                     AppDataManager dataManager,
+                                     MainWindow mainWindow,
+                                     StatisticsController statisticsController) {
         this.view = view;
         this.dataManager = dataManager;
         this.mainWindow = mainWindow;
+        this.statisticsController = statisticsController;
 
 
         setupUI();
@@ -132,14 +136,26 @@ public class OutfitGeneratorController {
         }
 
                      //Add to EventData (appears in Planner)
-        String date = java.time.LocalDate.now().toString();
+        String date = java.time.LocalDate.now()
+                .format(java.time.format.DateTimeFormatter.ofPattern("MM-dd-yyyy"));
         int id = random.nextInt(10000);
-        Event newEvent = new Event("Generated Outfit", date, id,
+
+        Event newEvent = new Event("Generated Outfit [StatsOnly]", date, id,
                 selectedShirt, selectedPants, selectedShoes);
         dataManager.getEventData().addEvent(newEvent);
+        try {
+            dataManager.getEventData().saveData();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        if (statisticsController != null) {
+            statisticsController.reloadStatistics();
+        }
+
 
         JOptionPane.showMessageDialog(view.getMainPanel(),
-                "Outfit finalized and added to your planner!");
+                "Outfit finalized!");
 
         resetOutfit();
     }

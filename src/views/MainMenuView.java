@@ -29,6 +29,10 @@ public class MainMenuView extends JFrame{
     public JButton getStatisticsButton() {
         return statisticsButton;
     }
+    public JTextArea getWarningArea() {
+        return warningArea;
+    }
+
     public JButton getOutfitGeneratorButton()
     {
         return outfitGeneratorButton;

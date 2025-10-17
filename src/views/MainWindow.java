@@ -25,6 +25,7 @@ public class MainWindow extends JFrame {
     private final OutfitGeneratorView outfitGeneratorView = new OutfitGeneratorView();
 
     // Controllers
+    private PlannerController plannerController;
     private StatisticsController statisticsController;
     private MainMenuController mainMenuController;
 
@@ -47,24 +48,29 @@ public class MainWindow extends JFrame {
         LaundryController laundryController =
                 new LaundryController(laundryView, appDataManager, this);
 
+        plannerController = new PlannerController(plannerView, appDataManager, this);
+
+
         WardrobeController wardrobeController =
                 new WardrobeController(wardrobeView, appDataManager, laundryController, this);
 
+
+
         laundryController.setWardrobeController(wardrobeController);
+        laundryController.setPlannerController(plannerController);
 
-        PlannerController plannerController =
-                new PlannerController(plannerView, appDataManager, this);
 
-        this.statisticsController =
+        statisticsController =
                 new StatisticsController(statisticsView, appDataManager, this);
 
-        this.mainMenuController =
+        mainMenuController =
                 new MainMenuController(mainMenuView, this, wardrobeController, plannerController);
 
         OutfitGeneratorController outfitController =
-                new OutfitGeneratorController(outfitGeneratorView, appDataManager, this);
+                new OutfitGeneratorController(outfitGeneratorView, appDataManager, this, statisticsController);
 
-            //Save data when window closes
+
+        //Save data when window closes
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -91,9 +97,17 @@ public class MainWindow extends JFrame {
         mainPanel.add(outfitGeneratorView.getMainPanel(), "outfitGenerator");
     }
 
-    //screen switching
+
+        //screen switching
     public void showPanel(String name) {
         cardLayout.show(mainPanel, name);
+
+        if ("mainMenu".equals(name)) {
+            mainMenuController.startAutoRefresh();
+        } else {
+            mainMenuController.stopAutoRefresh();
+        }
+
     }
 
     // Give other classes access to data
@@ -104,4 +118,13 @@ public class MainWindow extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainWindow::new);
     }
+
+    public MainMenuController getMainMenuController() {
+        return mainMenuController;
+    }
+    public PlannerController getPlannerController() {
+        return plannerController;
+    }
+
+
 }

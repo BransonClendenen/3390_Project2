@@ -254,6 +254,10 @@ public class WardrobeController {
         if (movedGarment != null) {
             dataManager.getGarmentData().removeGarment(movedGarment);
             laundryController.addToLaundry(movedGarment); // send garment to Laundry
+
+            mainWindow.getPlannerController().reloadPlanner();
+            mainWindow.getMainMenuController().updateLaundryWarnings();
+
             listModel.removeElement(selected);
             saveGarments();
             JOptionPane.showMessageDialog(view.getMainPanel(),

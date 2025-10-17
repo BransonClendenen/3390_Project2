@@ -90,7 +90,10 @@
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10197399"/>
+          <foreground color="-394241"/>
+        </properties>
         <border type="empty">
           <size top="10" left="10" bottom="10" right="10"/>
         </border>
@@ -98,7 +101,7 @@
           <scrollpane id="fab7e">
             <constraints border-constraint="Center"/>
             <properties>
-              <background color="-6447198"/>
+              <background color="-16777216"/>
               <font name="SansSerif" size="14" style="1"/>
             </properties>
             <border type="empty" title="Item Name | Times Used">
@@ -108,9 +111,11 @@
               <component id="3142a" class="javax.swing.JTable" binding="statsTable">
                 <constraints/>
                 <properties>
-                  <background color="-13658139"/>
-                  <font name="SansSerif" size="14" style="0"/>
-                  <foreground color="-7631471"/>
+                  <background color="-1129354"/>
+                  <font name="SansSerif" size="14" style="1"/>
+                  <foreground color="-15329391"/>
+                  <gridColor color="-16777216"/>
+                  <selectionForeground color="-9013124"/>
                 </properties>
               </component>
             </children>

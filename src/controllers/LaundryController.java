@@ -29,6 +29,13 @@ public class LaundryController {
         this.wardrobeController = wardrobeController;
     }
 
+    private PlannerController plannerController;
+
+    public void setPlannerController(PlannerController plannerController) {
+        this.plannerController = plannerController;
+    }
+
+
     //setup
 
     private void setupUI() {
@@ -81,8 +88,16 @@ public class LaundryController {
         if (garmentToReturn != null) {
             // Remove from laundry
             dataManager.getLaundryData().removeGarment(garmentToReturn);
+
+
             // Add back to wardrobe
             dataManager.getGarmentData().addGarment(garmentToReturn);
+
+            if (plannerController != null) {
+                plannerController.reloadPlanner();  //refreshes the list immediately
+            }
+
+            mainWindow.getMainMenuController().updateLaundryWarnings();
 
             // Refresh both lists
             if (wardrobeController != null) {
@@ -98,6 +113,8 @@ public class LaundryController {
             // API for other controllers
     public void addToLaundry(Garment garment) {
         dataManager.getLaundryData().addGarment(garment);
+        mainWindow.getMainMenuController().updateLaundryWarnings();
+
         saveLaundry();
         loadLaundryItems();
     }

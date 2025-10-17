@@ -8,7 +8,7 @@
       <alignmentX value="0.5"/>
       <alignmentY value="0.5"/>
       <background color="-657931"/>
-      <foreground color="-13658139"/>
+      <foreground color="-1767404"/>
     </properties>
     <border type="empty">
       <size top="20" left="20" bottom="20" right="20"/>
@@ -41,9 +41,11 @@
           <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <background color="-2112"/>
+          <background color="-16777216"/>
           <editable value="false"/>
           <enabled value="false"/>
+          <font name="SansSerif" size="14" style="1"/>
+          <foreground color="-1767404"/>
           <lineWrap value="true"/>
           <rows value="3"/>
           <wrapStyleWord value="true"/>

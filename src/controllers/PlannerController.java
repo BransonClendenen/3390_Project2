@@ -135,8 +135,9 @@ public class PlannerController {
         dataManager.getEventData().addEvent(newEvent);
         saveEvents();
         refreshTable();
-    }
 
+        mainWindow.getMainMenuController().updateLaundryWarnings();
+    }
     private void deleteEvent() {
         int selectedRow = view.getPlannerTable().getSelectedRow();
         if (selectedRow == -1) {
@@ -152,7 +153,34 @@ public class PlannerController {
                 e.getName().equals(item) && e.getDate().equals(date));
         saveEvents();
         refreshTable();
+        mainWindow.getMainMenuController().updateLaundryWarnings();
+
     }
+
+
+    //remove past events
+    private void removePastEvents() {
+        List<Event> events = dataManager.getEventData().getEvents();
+        if (events == null || events.isEmpty()) return;
+
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter cleanFmt = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        DateTimeFormatter legacyFmt = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy", java.util.Locale.ENGLISH);
+
+        events.removeIf(e -> {
+            if (e == null) return false;
+            LocalDate eventDate = parseDateSafely(e.getDate(), cleanFmt, legacyFmt);
+            return eventDate != null && eventDate.isBefore(today);
+        });
+
+        try {
+            dataManager.getEventData().saveData();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 
     public void reloadPlanner() {
         // default to shirts, or remember the last selected category if you want
@@ -165,44 +193,53 @@ public class PlannerController {
         DefaultTableModel model = (DefaultTableModel) view.getPlannerTable().getModel();
         model.setRowCount(0);
 
-        DateTimeFormatter cleanFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-        DateTimeFormatter legacyFormatter =
+        // --- Use the same date format you save in your app ---
+        DateTimeFormatter cleanFmt = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        DateTimeFormatter legacyFmt =
                 DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy", java.util.Locale.ENGLISH);
 
+        // --- Collect all planner events (skip Generated Outfit [StatsOnly]) ---
         List<Event> sortedEvents = dataManager.getEventData().getEvents().stream()
                 .filter(e -> e != null)
+                .filter(e -> !e.getName().toLowerCase().startsWith("generated outfit")) // ignore stats events
                 .sorted((e1, e2) -> {
-                    LocalDate d1 = parseDateSafely(e1.getDate(), cleanFormatter, legacyFormatter);
-                    LocalDate d2 = parseDateSafely(e2.getDate(), cleanFormatter, legacyFormatter);
+                    LocalDate d1 = parseDateSafely(e1.getDate(), cleanFmt, legacyFmt);
+                    LocalDate d2 = parseDateSafely(e2.getDate(), cleanFmt, legacyFmt);
 
-                    // If both parsed, compare; otherwise handle nulls safely
+                    // Handle nulls safely
                     if (d1 == null && d2 == null) return 0;
-                    if (d1 == null) return 1;   // null (unparsable) dates go to bottom
+                    if (d1 == null) return 1;   // nulls go to bottom
                     if (d2 == null) return -1;
-                    return d1.compareTo(d2);
+                    return d1.compareTo(d2);    //earliest first
                 })
                 .toList();
 
+        // --- Populate the table ---
         for (Event e : sortedEvents) {
-            model.addRow(new Object[]{e.getName(), formatDateDisplay(e.getDate())});
+            model.addRow(new Object[]{e.getName(), e.getDate()});
         }
     }
 
+
     //parse date safely regardless of format
-    private LocalDate parseDateSafely(String dateStr,
+    private LocalDate parseDateSafely(String s,
                                       DateTimeFormatter clean,
                                       DateTimeFormatter legacy) {
-        if (dateStr == null || dateStr.isEmpty()) return null;
+        if (s == null || s.isBlank()) return null;
         try {
-            return LocalDate.parse(dateStr, clean);
+            return LocalDate.parse(s, clean);
         } catch (Exception ex1) {
             try {
-                return LocalDate.parse(dateStr, legacy);
+                java.text.SimpleDateFormat sdf =
+                        new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", java.util.Locale.ENGLISH);
+                java.util.Date d = sdf.parse(s);
+                return d.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
             } catch (Exception ex2) {
                 return null;
             }
         }
     }
+
 
     //show all dates as MM-dd-yyyy even if legacy
     private String formatDateDisplay(String dateStr) {

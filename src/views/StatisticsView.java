@@ -18,24 +18,20 @@ public class StatisticsView {
     private JRadioButton allTimeRadioButton;
     private ButtonGroup statsToggleGroup;
 
-    public JPanel getMainPanel(){
 
+    public JPanel getMainPanel(){
         return mainPanel;
     }
-
                  // Controller accessors
     public JRadioButton getThisMonthButton() {
-
         return thisMonthRadioButton;
     }
 
     public JRadioButton getThreeMonthButton() {
-
         return threeMonthButton;
     }
 
     public JRadioButton getAllTimeButton() {
-
         return allTimeRadioButton;
     }
 
@@ -46,6 +42,10 @@ public class StatisticsView {
         return backButton;
     }
 
+
+    public JLabel getMonthLabel() {
+        return monthLabel;
+    }
 
 
 
