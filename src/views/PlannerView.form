@@ -3,16 +3,22 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="5" bottom="10" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="458"/>
+      <xy x="20" y="20" width="514" height="458"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-10066330"/>
+      <foreground color="-10066330"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="32954" binding="topPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13421773"/>
+          <foreground color="-13421773"/>
+        </properties>
         <border type="empty">
           <size top="10" left="10" bottom="10" right="10"/>
         </border>
@@ -20,7 +26,9 @@
           <component id="6a70b" class="javax.swing.JButton" binding="backButton">
             <constraints border-constraint="West"/>
             <properties>
+              <background color="-31744"/>
               <font size="14" style="0"/>
+              <foreground color="-16777216"/>
               <horizontalAlignment value="2"/>
               <horizontalTextPosition value="2"/>
               <text value="BACK"/>
@@ -28,14 +36,20 @@
           </component>
           <grid id="87ff5" binding="headerDatePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints border-constraint="East"/>
-            <properties/>
+            <properties>
+              <background color="-13421773"/>
+              <foreground color="-13421773"/>
+            </properties>
             <border type="empty">
               <size top="0" left="10" bottom="0" right="10"/>
             </border>
             <children>
               <component id="865f4" class="javax.swing.JSpinner" binding="dateSelector" custom-create="true">
                 <constraints border-constraint="Center"/>
-                <properties/>
+                <properties>
+                  <background color="-13421773"/>
+                  <foreground color="-16777216"/>
+                </properties>
               </component>
             </children>
           </grid>
@@ -43,6 +57,7 @@
             <constraints border-constraint="Center"/>
             <properties>
               <font name="SansSerif" size="18" style="1"/>
+              <foreground color="-16777216"/>
               <horizontalAlignment value="0"/>
               <text value="PLANNER/CALENDAR"/>
             </properties>
@@ -54,7 +69,10 @@
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13421773"/>
+          <foreground color="-13421773"/>
+        </properties>
         <border type="empty">
           <size top="0" left="10" bottom="0" right="10"/>
         </border>
@@ -65,26 +83,40 @@
                 <minimum-size width="225" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13421773"/>
+              <foreground color="-13421773"/>
+            </properties>
             <border type="empty">
               <size top="8" left="0" bottom="0" right="0"/>
             </border>
             <children>
               <scrollpane id="4beb4">
                 <constraints border-constraint="Center"/>
-                <properties/>
+                <properties>
+                  <background color="-13421773"/>
+                  <foreground color="-13421773"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="8865" class="javax.swing.JList" binding="wardrobeList">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <background color="-10066330"/>
+                      <foreground color="-16777216"/>
+                      <selectionBackground color="-31744"/>
+                      <selectionForeground color="-16777216"/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>
               <grid id="d36e1" binding="categoryPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints border-constraint="South"/>
-                <properties/>
+                <properties>
+                  <background color="-13421773"/>
+                  <foreground color="-13421773"/>
+                </properties>
                 <border type="empty">
                   <size top="5" left="0" bottom="2" right="0"/>
                 </border>
@@ -94,7 +126,9 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-31744"/>
                       <font name="SansSerif" size="14" style="0"/>
+                      <foreground color="-16777216"/>
                       <text value="Shirts"/>
                     </properties>
                   </component>
@@ -103,7 +137,9 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-31744"/>
                       <font name="SansSerif" size="14" style="0"/>
+                      <foreground color="-16777216"/>
                       <text value="Pants"/>
                     </properties>
                   </component>
@@ -112,7 +148,9 @@
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-31744"/>
                       <font name="SansSerif" size="14" style="0"/>
+                      <foreground color="-16777216"/>
                       <text value="Shoes"/>
                     </properties>
                   </component>
@@ -124,12 +162,21 @@
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-10066330"/>
+              <foreground color="-16777216"/>
+            </properties>
             <border type="none" title="Item | Date"/>
             <children>
               <component id="f8b67" class="javax.swing.JTable" binding="plannerTable">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <background color="-10066330"/>
+                  <foreground color="-16777216"/>
+                  <gridColor color="-31744"/>
+                  <selectionBackground color="-31744"/>
+                  <selectionForeground color="-16777216"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
@@ -138,7 +185,10 @@
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13421773"/>
+              <foreground color="-13421773"/>
+            </properties>
             <border type="empty">
               <size top="0" left="10" bottom="10" right="10"/>
             </border>
@@ -151,7 +201,9 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <background color="-31744"/>
                   <font name="SansSerif" size="14" style="0"/>
+                  <foreground color="-16777216"/>
                   <text value="Delete"/>
                 </properties>
               </component>
@@ -163,7 +215,9 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <background color="-31744"/>
                   <font name="SansSerif" size="14" style="0"/>
+                  <foreground color="-16777216"/>
                   <text value="Add"/>
                 </properties>
               </component>
