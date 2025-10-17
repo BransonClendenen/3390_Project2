@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.MainMenuView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="462" height="384"/>
+      <xy x="20" y="18" width="551" height="553"/>
     </constraints>
     <properties>
       <alignmentX value="0.5"/>
@@ -12,40 +12,30 @@
       <foreground color="-1767404"/>
     </properties>
     <border type="empty">
-      <size top="20" left="20" bottom="20" right="20"/>
+      <size top="5" left="5" bottom="5" right="5"/>
     </border>
     <children>
-      <component id="ae590" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <font name="SansSerif" size="18" style="1"/>
-          <foreground color="-16777216"/>
-          <text value="MAIN MENU"/>
-        </properties>
-      </component>
       <component id="637b9" class="javax.swing.JButton" binding="outfitGeneratorButton" default-binding="true">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="100" bottom="0" right="100" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <background color="-31744"/>
+          <font name="MV Boli" size="18" style="1"/>
           <foreground color="-16777216"/>
           <text value="Outfit Generator"/>
         </properties>
       </component>
       <component id="6c256" class="javax.swing.JTextArea" binding="warningArea">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
-          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+          <gridbag top="20" left="50" bottom="50" right="50" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <background color="-16777216"/>
+          <background color="-8486780"/>
           <editable value="false"/>
           <enabled value="false"/>
           <font name="SansSerif" size="14" style="1"/>
@@ -58,18 +48,18 @@
       <grid id="35092" binding="wrapperPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="20" left="20" bottom="20" right="20" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <background color="-13421773"/>
           <foreground color="-13421773"/>
         </properties>
         <border type="empty" title-position="2">
-          <size top="20" left="20" bottom="20" right="20"/>
+          <size top="0" left="0" bottom="0" right="0"/>
         </border>
         <children>
-          <grid id="23a0f" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="true" same-size-vertically="true" hgap="-1" vgap="-1">
-            <margin top="10" left="20" bottom="10" right="20"/>
+          <grid id="23a0f" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints border-constraint="Center"/>
             <properties>
               <background color="-13421773"/>
@@ -77,51 +67,89 @@
               <foreground color="-13421773"/>
             </properties>
             <border type="empty">
-              <size top="20" left="20" bottom="20" right="20"/>
+              <size top="50" left="50" bottom="50" right="50"/>
             </border>
             <children>
               <component id="3b9cc" class="javax.swing.JButton" binding="wardrobeButton">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="170" height="130"/>
+                  </grid>
                 </constraints>
                 <properties>
-                  <background color="-31744"/>
+                  <background color="-1129354"/>
+                  <font name="Ink Free" size="28" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Wardrobe"/>
                 </properties>
               </component>
               <component id="5671a" class="javax.swing.JButton" binding="laundryButton">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="170" height="130"/>
+                  </grid>
                 </constraints>
                 <properties>
-                  <background color="-31744"/>
+                  <background color="-1129354"/>
+                  <font name="Ink Free" size="28" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Laundry"/>
                 </properties>
               </component>
               <component id="7c299" class="javax.swing.JButton" binding="plannerButton">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="170" height="130"/>
+                  </grid>
                 </constraints>
                 <properties>
-                  <background color="-31744"/>
+                  <background color="-1129354"/>
+                  <font name="Ink Free" size="28" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Planner"/>
                 </properties>
               </component>
               <component id="adb27" class="javax.swing.JButton" binding="statisticsButton">
                 <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="170" height="130"/>
+                  </grid>
                 </constraints>
                 <properties>
-                  <background color="-31744"/>
+                  <background color="-1129354"/>
+                  <font name="Ink Free" size="28" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Statistics"/>
                 </properties>
               </component>
             </children>
           </grid>
+        </children>
+      </grid>
+      <grid id="880ce" binding="wrapperPanell" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-10066330"/>
+          <foreground color="-16777216"/>
+        </properties>
+        <border type="empty">
+          <size top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children>
+          <component id="ae590" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Segoe Print" size="36" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="MAIN MENU"/>
+            </properties>
+          </component>
         </children>
       </grid>
     </children>

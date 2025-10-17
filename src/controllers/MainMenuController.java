@@ -6,6 +6,7 @@ import views.MainMenuView;
 import views.MainWindow;
 
 import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -30,6 +31,42 @@ public class MainMenuController {
         setupListeners();
     }
 
+
+
+
+
+    private void styleMenuButton(JButton button, Color baseColor) {
+        // Flat look
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(true);
+
+        // Rounded edges
+        button.setBorder(BorderFactory.createLineBorder(new Color(160,160,160), 2, true));
+
+        // Base colors
+        button.setBackground(baseColor);
+        button.setForeground(Color.DARK_GRAY);
+
+        // Font and size
+        button.setFont(new Font("Ink Free", Font.BOLD, 28));
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        // Subtle shadow effect on hover
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                button.setBackground(baseColor.brighter());
+                button.setBorder(BorderFactory.createLineBorder(Color.GRAY, 3, true));
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                button.setBackground(baseColor);
+                button.setBorder(BorderFactory.createLineBorder(new Color(160,160,160), 2, true));
+            }
+        });
+    }
+
     private void setupListeners() {
         // Wardrobe
         view.getWardrobeButton().addActionListener(e -> {
@@ -51,6 +88,12 @@ public class MainMenuController {
         view.getOutfitGeneratorButton().addActionListener(e ->
                 mainWindow.showPanel("outfitGenerator"));
 
+        styleMenuButton(view.getWardrobeButton(), new Color(182, 230, 194));   // mint green
+        styleMenuButton(view.getLaundryButton(),  new Color(187, 222, 251));   // light sky blue
+        styleMenuButton(view.getPlannerButton(),  new Color(255, 241, 174));   // soft yellow
+        styleMenuButton(view.getStatisticsButton(), new Color(255, 204, 188)); // coral peach
+        styleMenuButton(view.getOutfitGeneratorButton(), new Color(255, 132, 0)); // lilac purple
+
         updateLaundryWarnings();
     }
 
@@ -67,7 +110,10 @@ public class MainMenuController {
     }
 
 
-    // --- Laundry conflict warning -----------------------------------------------
+
+
+
+    //Laundry conflict warning
     public void updateLaundryWarnings() {
         JTextArea warningArea = view.getWarningArea();
         if (warningArea == null) return;

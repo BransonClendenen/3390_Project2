@@ -12,6 +12,7 @@ public class MainMenuView extends JFrame{
     private JButton outfitGeneratorButton;
     private JTextArea warningArea;
     private JPanel wrapperPanel;
+    private JPanel wrapperPanell;
 
     public JPanel getMainPanel() {
 

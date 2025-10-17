@@ -32,10 +32,13 @@ public class MainWindow extends JFrame {
     public MainWindow() {
         setTitle("Wardrobe Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 600);
+        setSize(600, 600);
+        //lock the size
+        setResizable(false);
         setLocationRelativeTo(null); // center window
 
         addViews();
+
 
         //load data on start
         try {
