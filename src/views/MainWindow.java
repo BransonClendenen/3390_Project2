@@ -13,10 +13,10 @@ public class MainWindow extends JFrame {
     private final JPanel mainPanel = new JPanel(new CardLayout());
     private final CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 
-    // Shared data manager (contains GarmentData + EventData)
+          //shared data manager (contains GarmentData + EventData)
     private final AppDataManager appDataManager = new AppDataManager();
 
-    // Views (six forms)
+                    //Views (six forms)
     private final MainMenuView mainMenuView = new MainMenuView();
     private final WardrobeView wardrobeView = new WardrobeView();
     private final LaundryView laundryView = new LaundryView();
@@ -113,7 +113,7 @@ public class MainWindow extends JFrame {
 
     }
 
-    // Give other classes access to data
+        // Gives other classes access to data
     public AppDataManager getAppDataManager() {
         return appDataManager;
     }

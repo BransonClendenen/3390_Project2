@@ -44,7 +44,7 @@ public class WardrobeController {
     }
 
     private void styleActionButton(JButton button, Color baseColor) {
-        button.setFont(new Font("SansSerif", Font.BOLD, 13));
+        button.setFont(new Font("MV Boli", Font.BOLD, 20));
         button.setBackground(baseColor);
         button.setForeground(Color.DARK_GRAY);
         button.setFocusPainted(false);
@@ -64,23 +64,7 @@ public class WardrobeController {
             }
         });
 
-/*
 
-    // Optional hover effect (subtle color change)
-        button.addMouseListener(new java.awt.event.MouseAdapter()
-
-    {
-        @Override
-        public void mouseEntered (java.awt.event.MouseEvent e){
-        button.setBackground(new Color(200, 220, 255));
-    }
-
-        @Override
-        public void mouseExited (java.awt.event.MouseEvent e){
-        button.setBackground(new Color(220, 235, 250));
-    }
-    });
-*/
 }
     private void styleCategoryButton(JButton button) {
         button.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -95,7 +79,7 @@ public class WardrobeController {
         list.setModel(listModel);
 
         //styling
-        list.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        list.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
         list.setFixedCellHeight(26);                 // consistent spacing
         list.setSelectionBackground(new Color(200, 220, 255));  // light blue highlight
         list.setSelectionForeground(Color.BLACK);
@@ -117,12 +101,8 @@ public class WardrobeController {
         // Optional: same style for category buttons
         styleActionButton(view.getShirtsButton(), new Color(200, 250, 200));
         styleActionButton(view.getPantsButton(), new Color(255, 250, 200));
-        styleActionButton(view.getShoesButton(), new Color(255, 210, 210));
+        styleActionButton(view.getShoesButton(), new Color(204, 153, 255));
 
-      /*  styleCategoryButton(view.getShirtsButton());
-        styleCategoryButton(view.getPantsButton());
-        styleCategoryButton(view.getShoesButton());
-*/
 
         dataManager.getGarmentData().getGarments().removeIf(g -> g == null);
 
@@ -162,16 +142,16 @@ public class WardrobeController {
         view.getBackButton().addActionListener(e -> mainWindow.showPanel("mainMenu"));
 
 
-        // Add new item
+          // Add new item
         view.getAddButton().addActionListener(e -> addNewItem());
 
-        //Edit selected item
+          //Edit selected item
         view.getEditButton().addActionListener(e -> editSelectedItem());
 
-        // Delete selected item
+                     // Delete selected item
         view.getDeleteButton().addActionListener(e -> deleteSelectedItem());
 
-        //Send selected item to Laundry
+          //Send selected item to Laundry
         view.getLaundryButton().addActionListener(e -> moveToLaundry());
     }
 

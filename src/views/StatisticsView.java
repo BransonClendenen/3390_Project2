@@ -12,10 +12,10 @@ public class StatisticsView {
     private JPanel bottomPanel;
     private JLabel monthLabel;
     private JPanel radioWrapperPanel;
-    private JPanel backWrapper;
     private JRadioButton thisMonthRadioButton;
     private JRadioButton threeMonthButton;
     private JRadioButton allTimeRadioButton;
+    private JPanel wrapperPanel;
     private ButtonGroup statsToggleGroup;
 
 
@@ -50,24 +50,6 @@ public class StatisticsView {
 
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-/*
-    //Month action listeners
-    public void setBackButtonListener(ActionListener listener){
-        backButton.addActionListener(listener);
-    }
-    public void setMonthButtonListener(ActionListener listener){
-        thisMonthButton.addActionListener(listener);
-    }
-    public void setThreeMonthButtonListener(ActionListener listener){
-        threeMonthButton.addActionListener(listener);
-    }
-    public void setAllTimeButtonButtonListener(ActionListener listener){
-        allTimeButton.addActionListener(listener);
-    }
 
-
-*/
-
+    }
 }

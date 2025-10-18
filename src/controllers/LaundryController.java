@@ -6,6 +6,7 @@ import models.Garment;
 import views.LaundryView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class LaundryController {
@@ -25,6 +26,7 @@ public class LaundryController {
         setupListeners();
     }
 
+
     public void setWardrobeController(WardrobeController wardrobeController) {
         this.wardrobeController = wardrobeController;
     }
@@ -40,6 +42,8 @@ public class LaundryController {
 
     private void setupUI() {
         view.getLaundryList().setModel(laundryListModel);
+
+
         loadLaundryItems();
     }
 
@@ -85,8 +89,9 @@ public class LaundryController {
             }
         }
 
+
         if (garmentToReturn != null) {
-            // Remove from laundry
+                      //Remove from laundry
             dataManager.getLaundryData().removeGarment(garmentToReturn);
 
 
@@ -99,7 +104,7 @@ public class LaundryController {
 
             mainWindow.getMainMenuController().updateLaundryWarnings();
 
-            // Refresh both lists
+              // Refresh both lists
             if (wardrobeController != null) {
                 wardrobeController.reloadWardrobe();
             }

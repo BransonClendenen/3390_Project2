@@ -1,5 +1,4 @@
-import models.EventData;
-import models.GarmentData;
+
 import views.*;
 
 public class App {

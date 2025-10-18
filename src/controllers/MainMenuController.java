@@ -33,8 +33,6 @@ public class MainMenuController {
 
 
 
-
-
     private void styleMenuButton(JButton button, Color baseColor) {
         // Flat look
         button.setFocusPainted(false);
@@ -48,11 +46,12 @@ public class MainMenuController {
         button.setBackground(baseColor);
         button.setForeground(Color.DARK_GRAY);
 
-        // Font and size
+            // Font and size
         button.setFont(new Font("Ink Free", Font.BOLD, 28));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        // Subtle shadow effect on hover
+
+         // Subtle shadow effect on hover
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
@@ -68,19 +67,19 @@ public class MainMenuController {
     }
 
     private void setupListeners() {
-        // Wardrobe
+        //Wardrobe
         view.getWardrobeButton().addActionListener(e -> {
             wardrobeController.reloadWardrobe();
             mainWindow.showPanel("wardrobe");
         });
 
-        //Planner - now refreshes when opened
+             //Planner - now refreshes when opened
         view.getPlannerButton().addActionListener(e -> {
             plannerController.reloadPlanner();
             mainWindow.showPanel("planner");
         });
 
-        // Other buttons unchanged
+          // Other buttons unchanged
         view.getLaundryButton().addActionListener(e ->
                 mainWindow.showPanel("laundry"));
         view.getStatisticsButton().addActionListener(e ->
@@ -94,8 +93,10 @@ public class MainMenuController {
         styleMenuButton(view.getStatisticsButton(), new Color(255, 204, 188)); // coral peach
         styleMenuButton(view.getOutfitGeneratorButton(), new Color(255, 132, 0)); // lilac purple
 
+
         updateLaundryWarnings();
     }
+
 
     //Automatic periodic refresh
     private final javax.swing.Timer autoRefreshTimer =
@@ -120,11 +121,11 @@ public class MainMenuController {
 
         warningArea.setText(""); // clear old warnings
 
-        // Gather laundry items
+        //gather laundry items
         List<Garment> laundryItems = mainWindow.getAppDataManager()
                 .getLaundryData().getLaundryItems();
 
-        // Gather all events (plans)
+        //Gather all events (plans)
         List<Event> events = mainWindow.getAppDataManager()
                 .getEventData().getEvents();
 
@@ -145,7 +146,7 @@ public class MainMenuController {
             LocalDate eventDate = parseDateSafely(e.getDate(), cleanFmt, legacyFmt);
             if (eventDate == null || !eventDate.equals(tomorrow)) continue;
 
-            // Check if any laundry item matches this planned item
+            //Check if any laundry item matches this planned item
             for (Garment g : laundryItems) {
                 if (g == null) continue;
                 if (e.getName().equalsIgnoreCase(g.getName())) {
@@ -155,7 +156,7 @@ public class MainMenuController {
         }
 
         if (warnings.length() == 0) {
-            warningArea.setText("No conflicts. All planned items are clean");
+            warningArea.setText("All planned items are clean");
         } else {
             warningArea.setText("" + warnings);
         }

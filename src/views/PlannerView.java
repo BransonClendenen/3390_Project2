@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.text.SimpleDateFormat;
+
 
 public class PlannerView {
     private JButton backButton;
@@ -93,33 +93,4 @@ public class PlannerView {
 
 }
 
-    //public String getSelectedDate() {
-      //  return dateSelector.getValue().toString();
-    //}
-
-/*
-    //Action Listeners
-    public void setBackButtonListener(ActionListener listener) {
-        backButton.addActionListener(listener);
-    }
-    public void setShirtButtonListener(ActionListener listener) {
-        shirtButton.addActionListener(listener);
-    }
-    public void setPantsButtonListener(ActionListener listener) {
-        pantsButton.addActionListener(listener);
-    }
-    public void setShoesButtonsListener (ActionListener listener){
-        shoesButton.addActionListener(listener);
-    }
-    public void setAddButtonListener(ActionListener listener) {
-        addButton.addActionListener(listener);
-    }
-    public void setDeleteButtonListener(ActionListener listener) {
-        deleteButton.addActionListener(listener);
-    }
-
-    //Get Date Field
-    public String getDateField() {
-        return dateField.getText();
-    }*/
 

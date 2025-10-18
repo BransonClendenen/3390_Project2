@@ -1,7 +1,7 @@
 package views;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
+
 
 public class LaundryView {
     private JPanel mainPanel;
@@ -33,15 +33,4 @@ public class LaundryView {
         return backButton;
     }
 
-
-    /*
-    //Action Listeners
-    public void setBackButtonListener(ActionListener listener) {
-        backButton.addActionListener(listener);
-    }
-    public void setCheckOffButtonListener(ActionListener listener) {
-        checkOffButton.addActionListener(listener);
-    }
-
-*/
 }

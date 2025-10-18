@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="559"/>
+      <xy x="20" y="20" width="764" height="559"/>
     </constraints>
     <properties>
       <background color="-10066330"/>
@@ -27,30 +27,34 @@
         <children>
           <component id="be3f8" class="javax.swing.JButton" binding="backButton">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="50"/>
+              </grid>
             </constraints>
             <properties>
-              <background color="-161536"/>
-              <font size="14" style="0"/>
+              <background color="-152320"/>
+              <font name="MV Boli" size="20" style="1"/>
               <text value="BACK"/>
             </properties>
           </component>
           <component id="a8d20" class="javax.swing.JLabel" binding="headerLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="10" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="SansSerif" size="18" style="1"/>
-              <foreground color="-16777216"/>
+              <font name="Segoe Print" size="28" style="1"/>
+              <foreground color="-25527"/>
               <labelFor value="c9715"/>
-              <text value="&amp;WARDROBE"/>
+              <text value="WARDROBE"/>
             </properties>
           </component>
         </children>
       </grid>
       <grid id="284ed" binding="centerPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="200"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-13421773"/>
@@ -68,6 +72,7 @@
                 <constraints/>
                 <properties>
                   <background color="-13421773"/>
+                  <font name="Comic Sans MS" size="14" style="0"/>
                 </properties>
               </component>
             </children>
@@ -77,6 +82,7 @@
       <component id="4db6d" class="javax.swing.JTextField" binding="addItemField">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="30"/>
             <preferred-size width="320" height="-1"/>
           </grid>
         </constraints>
@@ -86,7 +92,9 @@
       </component>
       <grid id="d16e7" binding="bottomBar" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <maximum-size width="-1" height="180"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-13421773"/>
@@ -102,50 +110,52 @@
             <properties>
               <background color="-13421773"/>
             </properties>
-            <border type="none"/>
+            <border type="empty">
+              <size top="0" left="0" bottom="0" right="0"/>
+            </border>
             <children>
               <component id="10a7a" class="javax.swing.JButton" binding="shirtsButton">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="30"/>
-                    <preferred-size width="80" height="30"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="35"/>
+                    <preferred-size width="100" height="35"/>
                     <maximum-size width="500" height="500"/>
                   </grid>
                 </constraints>
                 <properties>
                   <background color="-161536"/>
                   <enabled value="true"/>
-                  <font size="14" style="0"/>
+                  <font name="MV Boli" size="18" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Shirts"/>
                 </properties>
               </component>
               <component id="bc50c" class="javax.swing.JButton" binding="pantsButton">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="30"/>
-                    <preferred-size width="80" height="30"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="35"/>
+                    <preferred-size width="100" height="35"/>
                     <maximum-size width="500" height="500"/>
                   </grid>
                 </constraints>
                 <properties>
                   <background color="-161536"/>
-                  <font size="14" style="0"/>
+                  <font name="MV Boli" size="18" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Pants"/>
                 </properties>
               </component>
               <component id="73d6f" class="javax.swing.JButton" binding="shoesButton">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="30"/>
-                    <preferred-size width="80" height="30"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="35"/>
+                    <preferred-size width="100" height="35"/>
                     <maximum-size width="500" height="500"/>
                   </grid>
                 </constraints>
                 <properties>
                   <background color="-161536"/>
-                  <font size="14" style="0"/>
+                  <font name="MV Boli" size="18" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Shoes"/>
                 </properties>
@@ -165,77 +175,74 @@
             <children>
               <component id="7a927" class="javax.swing.JButton" binding="addButton">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="30"/>
-                    <preferred-size width="80" height="30"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="35"/>
+                    <preferred-size width="100" height="35"/>
                     <maximum-size width="500" height="500"/>
                   </grid>
                 </constraints>
                 <properties>
                   <background color="-161536"/>
-                  <font size="14" style="0"/>
+                  <font name="MV Boli" size="18" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Add"/>
                 </properties>
               </component>
               <component id="d5a2d" class="javax.swing.JButton" binding="editButton">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="30"/>
-                    <preferred-size width="80" height="30"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="35"/>
+                    <preferred-size width="100" height="35"/>
                     <maximum-size width="500" height="500"/>
                   </grid>
                 </constraints>
                 <properties>
                   <background color="-161536"/>
-                  <font size="14" style="0"/>
+                  <font name="MV Boli" size="18" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Edit"/>
                 </properties>
               </component>
               <component id="ab2f2" class="javax.swing.JButton" binding="deleteButton">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="30"/>
-                    <preferred-size width="80" height="30"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="35"/>
+                    <preferred-size width="100" height="35"/>
                     <maximum-size width="500" height="500"/>
                   </grid>
                 </constraints>
                 <properties>
                   <background color="-161536"/>
-                  <font size="14" style="0"/>
+                  <font name="MV Boli" size="18" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Delete"/>
                 </properties>
               </component>
             </children>
           </grid>
-          <grid id="e2bbb" binding="centerColumn" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="8" vgap="8">
+          <grid id="e2bbb" binding="centerColumn" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="8" vgap="8">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints border-constraint="Center"/>
             <properties>
               <background color="-13421773"/>
             </properties>
             <border type="empty">
-              <size top="0" left="50" bottom="0" right="50"/>
+              <size top="0" left="50" bottom="3" right="50"/>
             </border>
             <children>
               <component id="ccd7f" class="javax.swing.JButton" binding="laundryButton">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="30"/>
+                  </grid>
                 </constraints>
                 <properties>
                   <background color="-161536"/>
-                  <font size="14" style="0"/>
+                  <font name="MV Boli" size="18" style="1"/>
                   <foreground color="-16777216"/>
                   <text value="Laundry"/>
                 </properties>
               </component>
-              <vspacer id="f35ca">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
             </children>
           </grid>
         </children>

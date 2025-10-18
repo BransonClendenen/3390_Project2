@@ -7,12 +7,14 @@ import views.StatisticsView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.table.JTableHeader;
 
+
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.List;
 
 
 public class StatisticsController {
@@ -31,14 +33,53 @@ public class StatisticsController {
         loadThisMonth();   // default
     }
 
-    // ---------- UI ----------
+    private void styleStatsButton(AbstractButton button, Color baseColor) {
+        button.setFocusPainted(false);
+        button.setBackground(baseColor);
+        button.setForeground(Color.DARK_GRAY);
+        button.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
+        button.setBorder(BorderFactory.createLineBorder(new Color(180, 180, 180), 1, true));
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                button.setBackground(baseColor.brighter());
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                button.setBackground(baseColor);
+            }
+        });
+    }
+
+
+    //UI setup
     private void setupUI() {
         JTable table = view.getStatsTable();
         table.setModel(new DefaultTableModel(new Object[]{"Item", "Uses"}, 0));
-        table.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        table.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
         table.setRowHeight(26);
         table.setShowGrid(true);
         table.setGridColor(Color.LIGHT_GRAY);
+
+
+        JTableHeader header = table.getTableHeader();
+        header.setBackground(new Color(255, 255, 47));
+        header.setForeground(Color.DARK_GRAY);
+        header.setFont(new Font("Segoe Print", Font.BOLD, 16));
+
+        //Radio buttons
+        styleStatsButton(view.getThisMonthButton(), new Color(182, 230, 194));   // mint
+        styleStatsButton(view.getThreeMonthButton(), new Color(187, 222, 251)); // blue
+        styleStatsButton(view.getAllTimeButton(), new Color(255, 241, 174));    // yellow
+
+
+        view.getMainPanel().setBackground(new Color(102, 102, 102)); // very light blue-white
+            //stop table edit
+        table.setDefaultEditor(Object.class, null);
+
     }
 
     private void setupListeners() {
@@ -48,7 +89,7 @@ public class StatisticsController {
         view.getBackButton().addActionListener(e -> mainWindow.showPanel("mainMenu"));
     }
 
-    // ---------- Period loaders ----------
+    //Period loaders
     private void loadThisMonth() {
         view.getMonthLabel().setText("This Month");
         fillCountsAndTable(1);
@@ -90,21 +131,21 @@ public class StatisticsController {
             if (d == null) continue;
 
             if (monthsBack == 0 || !d.isBefore(now.minusMonths(monthsBack))) {
-                // Count each garment occurrence
+                //Count each garment occurrence
                 inc(counts, e.getEventShirt());
                 inc(counts, e.getEventPants());
                 inc(counts, e.getEventShoes());
             }
         }
 
-        // Sort entries by count desc, then by item name asc
+        //Sort entries by count desc, then by item name asc
         List<Map.Entry<String, Integer>> sorted = new ArrayList<>(counts.entrySet());
         sorted.sort((a, b) -> {
             int cmp = Integer.compare(b.getValue(), a.getValue());
             return (cmp != 0) ? cmp : a.getKey().compareToIgnoreCase(b.getKey());
         });
 
-        // Fill table
+        //fill table
         for (Map.Entry<String, Integer> entry : sorted) {
             model.addRow(new Object[]{entry.getKey(), entry.getValue()});
         }
@@ -115,7 +156,7 @@ public class StatisticsController {
         map.put(key, map.getOrDefault(key, 0) + 1);
     }
 
-    // Handles both "yyyy-MM-dd" and legacy "Sat Oct 18 00:00:00 PDT 2025"
+
     private LocalDate parseDateSafely(String s, DateTimeFormatter clean, DateTimeFormatter legacy) {
         if (s == null || s.isBlank()) return null;
         try {
@@ -132,9 +173,9 @@ public class StatisticsController {
         }
     }
 
-    //external refresh for other controllers
+           //external refresh for other controllers
     public void reloadStatistics() {
-        // keep same period currently displayed
+            // keep same period currently displayed
         String label = view.getMonthLabel().getText();
         switch (label) {
             case "Last 3 Months" -> loadLastThreeMonths();
