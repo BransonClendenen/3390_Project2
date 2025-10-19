@@ -88,9 +88,8 @@ public class PlannerView {
                 new JSpinner.DateEditor(dateSelector, "MM-dd-yyyy");
         dateSelector.setEditor(editor);
         dateSelector.setPreferredSize(new Dimension(90, 25));
+
     }
-
-
 }
 
 

@@ -150,6 +150,23 @@ public class PlannerController {
         String item = view.getWardrobeList().getSelectedValue();
         String date = view.getSelectedDate();
 
+                //no past dates acceptable
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        LocalDate selectedDate;
+        try {
+            selectedDate = LocalDate.parse(date, fmt);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(view.getMainPanel(), "Invalid date format.");
+            return;
+        }
+
+        LocalDate today = LocalDate.now();
+        if (selectedDate.isBefore(today)) {
+            JOptionPane.showMessageDialog(view.getMainPanel(),
+                    "You cannot plan for a past date!");
+            return;
+        }
+
         if (item == null || item.isEmpty()) {
             JOptionPane.showMessageDialog(view.getMainPanel(), "Please select an item.");
             return;
@@ -224,6 +241,8 @@ public class PlannerController {
 
 
     public void reloadPlanner() {
+        removePastEvents();   // clean up outdated plans first
+
         //default to shirts, or remember the last selected category if you want
         loadCategoryItems("Shirt");
         refreshTable();
@@ -231,6 +250,8 @@ public class PlannerController {
 
 
     public void refreshTable() {
+        removePastEvents();   // clean up outdated plans first
+
         DefaultTableModel model = (DefaultTableModel) view.getPlannerTable().getModel();
         model.setRowCount(0);
 

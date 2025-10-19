@@ -45,7 +45,7 @@ public class OutfitGeneratorController {
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
 
            //Set larger text for table cells
-        table.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        table.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 
           //Increase row height for better spacing
         table.setRowHeight(28);
